@@ -1,0 +1,80 @@
+@font-face {
+    font-family: BebasNeue;
+    src: url(../resourses/BebasNeue.otf);
+}
+
+body{
+	width:auto;	
+	margin:0 0 0 0;
+	text-align:center;
+	font-family:BebasNeue;
+	background-color:#343434;
+}
+#login_header{
+	padding-top:135px;
+	padding-bottom:50px;
+}
+#login_banner{
+	width:500px;
+	
+}
+#login input ,#login select{
+	width:240px;
+	height:40px;
+	margin-left:25px;
+	padding-left:5px;
+	font-size:30px;
+	font-family:BebasNeue;
+	
+	border:none;
+	
+}
+#login .input_f{
+	
+	background-color:#EBEBEB;
+	color:#181818;
+	
+	
+}
+
+#submit{
+	margin-top:20px;
+	background:none;
+	color:#FEFEFE;
+}
+ #wrapper{
+	width:100%;
+}
+#header{
+	display:block;
+	height:65px;
+	padding:15px 15px;
+	
+}
+#header_logo{
+	width:200px;
+	margin-left:12%;
+}
+#username_div{
+	font-family:BebasNeue;
+	font-size:36px;
+	color:#EFEFEF;
+	float:right;
+	padding-top:16px;
+}
+#tabs{
+height:50px;
+}
+#logout{
+	width:25px;
+	height:25px;
+	
+}
+#links{
+	background-color:green;
+	width:50%;
+	float:left;
+}
+#toolbar{
+	float:right;
+}

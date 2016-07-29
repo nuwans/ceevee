@@ -1,0 +1,27 @@
+/1st phase/
+/////////////////fix nationality search
+////////////////fix salary not showing in job view
+////////////////fix - keep data in form after error message - show pop up "all fields are mandatory"
+/////fix - prompt password pop up on edit/delete profile press
+////////////////////fix - make search and job search results full screen size
+
+/2nd phase/
+////////Remove CRM tab
+///////remove email canidate functionality
+//////when you click email of candidate it takes you to e-mail client
+
+/3rd phase/
+////////add "date created" stamp for candidate & job forms
+/////////////////(add job preference primary & secondary fields to candidate form)
+////////add "interviewed by" field add to candidate form
+/////////add field to "status" (blacklisted)
+///////////////add entered by (profile stamp) to candidate & job forms
+//add name, age, country, job preference & status to candidate search - make sure all search fields work together and separately
+
+/4th phase/
+//integrate web cam for photo - https://davidwalsh.name/browser-camera
+select which database to use option in login
+
+Model dialog  for  authontication
+age  filter
+job preference vs proffesion
