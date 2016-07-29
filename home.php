@@ -160,6 +160,7 @@ $(document).ready(function() {
 				var ageAbove =		$('#can_s_age_a').val();
 				var country_pre =		$('#can_s_country').val();
 				var job_preference = $('#can_s_job_pre').val();
+				var job_preference2 = $('#can_s_job_pre2').val();
 				//alert(country);
 				$.post("model/CandidatesModel.php", //Required URL of the page on server
 									{ // Data Sending With Request To Server
@@ -172,7 +173,8 @@ $(document).ready(function() {
 										age:age,
 										agea:ageAbove,
 										cou_pre:country_pre,
-										job_pre:job_preference
+										job_pre:job_preference,
+										job_pre2:job_preference2,
 
 									},function(response,status){ // Required Callback Function
 									//alert(response); 

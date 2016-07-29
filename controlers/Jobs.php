@@ -78,24 +78,24 @@ public function InsertJobs($pos,$ind,$coun,$sal,$over,$user,$comp,$db){
 public function SearchJobs($pos,$ind,$coun,$sal,$company){
 	//echo $pos;  echo $ind ; echo $coun; echo $sal;
 	 
-	$sal=intval($sal);
-	include 'DBConnect.php';
-	$dbCon = new DBConnect();
-	$connectionState=$dbCon->connection();	
-    $sql="SELECT * FROM `jobs`";   
-    
-    
-    if(($ind != '') ||  ($pos != '') || ($coun != '') ||  ($company != '')) {
-    $sql .= "WHERE ";
-  }
- 
-//ADD THE QUERY INFORMATION TO THE WHERE CLAUSE
-$combine = '';
-if($ind != '') { $sql .= $combine. "`industry` like '%$ind%' "; $combine='AND '; }
-if($pos != '') { $sql .= $combine. " `position` LIKE '%$pos%' "; $combine='AND '; }
-if($coun != '')  { $sql .= $combine. "  `country` = '$coun' "; $combine='AND '; }
-if($company != '')  { $sql .= $combine. "  `company` = '$company' "; $combine='AND '; }
-/*if($sal != '')  { $sql .= $combine. "  `sallary` <= $sal ";}*/
+		$sal=intval($sal);
+		include 'DBConnect.php';
+		$dbCon = new DBConnect();
+		$connectionState=$dbCon->connection();	
+		$sql="SELECT * FROM `jobs`";   
+		
+		
+		if(($ind != '') ||  ($pos != '') || ($coun != '') ||  ($company != '')) {
+		$sql .= "WHERE ";
+	}
+	
+	//ADD THE QUERY INFORMATION TO THE WHERE CLAUSE
+	$combine = '';
+	if($ind != '') { $sql .= $combine. "`industry` like '%$ind%' "; $combine='AND '; }
+	if($pos != '') { $sql .= $combine. " `position` LIKE '%$pos%' "; $combine='AND '; }
+	if($coun != '')  { $sql .= $combine. "  `country` = '$coun' "; $combine='AND '; }
+	if($company != '')  { $sql .= $combine. "  `company` = '$company' "; $combine='AND '; }
+	/*if($sal != '')  { $sql .= $combine. "  `sallary` <= $sal ";}*/
 
 
 
@@ -115,7 +115,7 @@ if($company != '')  { $sql .= $combine. "  `company` = '$company' "; $combine='A
   
 
     $ViewJobs .= ";"; 
-*/    //AND `sallary` <= '$sal' AND (`position` like 'pos%' OR `industry` like '$ind'  ;";    
+	*/    //AND `sallary` <= '$sal' AND (`position` like 'pos%' OR `industry` like '$ind'  ;";    
 	$ViewJobsResult=mysqli_query($connectionState,$sql);
 	$output_table= "<table id=\"job_list\">
 				<tr class='tbl_head'>
@@ -160,7 +160,7 @@ if($company != '')  { $sql .= $combine. "  `company` = '$company' "; $combine='A
 	echo $output_table;	//$ViewJobs="SELECT * FROM `jobs` ;";
 }
 public function ShowOneJob($id){
-include 'DBConnect.php';
+	include 'DBConnect.php';
 	$dbCon = new DBConnect();
 	$connectionState=$dbCon->connection();
 	
@@ -207,7 +207,7 @@ include 'DBConnect.php';
 				</tr>
 				<tr>
 					<td class='label'>Company</td>
-					<td><input type='text' class='mw_tf' disabled='disabled' id='company' value='$row[8]'	></td>
+					<td><input type='text' class='mw_tf' disabled='disabled' id='comp_' value='$row[8]'	></td>
 				</tr>
 				<tr>
 					<td class='label'>Added By</td>
@@ -241,25 +241,25 @@ include 'DBConnect.php';
 
 }
 
-public function UpdateJob($id,$pos,$ind,$coun,$sal,$over,$db){
+public function UpdateJob($id,$pos,$ind,$coun,$sal,$over,$comp,$db){
 include 'DBConnect.php';
 	$dbCon = new DBConnect();
 	$connectionState=$dbCon->connection();
 	
-	$sql = "UPDATE `".$db."`.`jobs` SET `position` = '$pos', `industry` = '$ind', `sallary` = '$sal', `country` = '$coun', `overview` = '$over' WHERE `jobs`.`job_id` = '$id';";
+	$sql = "UPDATE `".$db."`.`jobs` SET `position` = '$pos', `industry` = '$ind', `sallary` = '$sal', `country` = '$coun', `overview` = '$over' ,`company` = '$comp' WHERE `jobs`.`job_id` = '$id';";
 		
 	$Result=mysqli_query($connectionState,$sql);
 	//if($Result){echo "done";}
 }
 public function DeleteJob($id,$db){
-include 'DBConnect.php';
-	$dbCon = new DBConnect();
-	$connectionState=$dbCon->connection();
-	
-	$sql = "DELETE FROM `".$db."`.`jobs` WHERE `jobs`.`job_id` = '$id';";
-	$Result=mysqli_query($connectionState,$sql);
+	include 'DBConnect.php';
+		$dbCon = new DBConnect();
+		$connectionState=$dbCon->connection();
+		
+		$sql = "DELETE FROM `".$db."`.`jobs` WHERE `jobs`.`job_id` = '$id';";
+		$Result=mysqli_query($connectionState,$sql);
 
-}
+	}
 
 }
 ?>

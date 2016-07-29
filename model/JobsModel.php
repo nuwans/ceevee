@@ -56,6 +56,7 @@ $ind=$_REQUEST['ind'];
 $coun=$_REQUEST['coun'];
 $sal=$_REQUEST['sal'];
 $over=$_REQUEST['over'];
+$comp=$_REQUEST['comp'];
 
 /*echo $id;
 echo $pos;
@@ -64,7 +65,7 @@ echo $coun;
 echo $sal;
 echo $over;
 */$jobsModel = new Jobs();
-$jobsModel->UpdateJob($id,$pos,$ind,$coun,$sal,$over,$db);
+$jobsModel->UpdateJob($id,$pos,$ind,$coun,$sal,$over,$comp,$db);
 }
 else if($actionType=='delete'){
 $id=$_REQUEST['id'];

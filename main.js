@@ -53,7 +53,7 @@ function remove_item(element){
 function viewJobsAndCandidates(model){
 
 	var model=model;  // Jobs Model Or Candidates model
-//	alert(model);
+	//	alert(model);
 	
 	if (window.XMLHttpRequest)
 	  {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -109,8 +109,8 @@ function SearchJobs(model,pos,ind,coun,sal,comp){
 	alert(coun);
 	alert(sal);
 
-*/	var model=model;  // Jobs Model Or Candidates model
-//	alert(model);
+	*/	var model=model;  // Jobs Model Or Candidates model
+	//	alert(model);
 	
 	if (window.XMLHttpRequest)
 	  {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -133,9 +133,9 @@ function SearchJobs(model,pos,ind,coun,sal,comp){
 }// End Of Search
 
 function ViewOneJob(ref){
-//alert(ref);
-	//alert(s);
-if (window.XMLHttpRequest)
+	//alert(ref);
+		//alert(s);
+	if (window.XMLHttpRequest)
 	  {// code for IE7+, Firefox, Chrome, Opera, Safari
 	  xmlhttp=new XMLHttpRequest();
 	  }
@@ -155,30 +155,29 @@ if (window.XMLHttpRequest)
 	xmlhttp.send();
 }
 function ViewOneCandidate(ref){
-//alert(ref);
+	//alert(ref);
 	//alert(s);
-if (window.XMLHttpRequest)
-	  {// code for IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp=new XMLHttpRequest();
-	  }
-	else
-	  {// code for IE6, IE5
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	xmlhttp.onreadystatechange=function()
-	  {
-	  if (xmlhttp.readyState==4 && xmlhttp.status==200){
-	//alert(xmlhttp.responseText);
-			
-	document.getElementById('mw_can_content').innerHTML=xmlhttp.responseText;
-	    }
-	  }
-	xmlhttp.open("POST","model/CandidatesModel.php?actionType=OneCandidate&id="+ref,true);
-	xmlhttp.send();
+	if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		//alert(xmlhttp.responseText);
+				
+		document.getElementById('mw_can_content').innerHTML=xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("POST","model/CandidatesModel.php?actionType=OneCandidate&id="+ref,true);
+		xmlhttp.send();
 }
 
 function EnableJOBEditCheck(){
-	console.log('a');
 		$( function() {
 			var dialog,     
 				password = $( "#mw_pwd" );
@@ -219,12 +218,13 @@ function EnableJOBEditCheck(){
 	
 }
 function EnableEdit(){
-
+	console.log('edit job');
 	document.getElementById('pos').disabled = false;
 	document.getElementById('ind').disabled = false;
 	document.getElementById('cou').disabled = false;
 	document.getElementById('sal').disabled = false;
 	document.getElementById('over').disabled = false;
+	document.getElementById('comp_').disabled = false;
 	document.getElementById('mw_save_btn').style.visibility = 'visible';
 
 }
@@ -433,6 +433,7 @@ function UpdateJob(){
 	var sal=document.getElementById('sal').value;
 	var over=document.getElementById('over').value;
 	var ind=document.getElementById('ind').value;
+	var comp=document.getElementById('comp_').value;
 	//alert(id+pos+coun+ind+over);
 	if (window.XMLHttpRequest)
 			{// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -450,7 +451,7 @@ function UpdateJob(){
 				
 				}
 			}
-		xmlhttp.open("POST","model/JobsModel.php?actionType=update&id="+id+"&pos="+pos+"&ind="+ind+"&coun="+coun+"&sal="+sal+"&over="+over,true);
+		xmlhttp.open("POST","model/JobsModel.php?actionType=update&id="+id+"&pos="+pos+"&ind="+ind+"&coun="+coun+"&sal="+sal+"&over="+over+"&comp="+comp,true);
 		xmlhttp.send();
 
 	}// Update Job

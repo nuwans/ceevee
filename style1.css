@@ -249,9 +249,13 @@ background:#242424;
 	background-color:#9D9D9D;
 	color:#262626;
 	border:none;
+	
 	font-size:25px;
 	font-weight:bolder;
 	
+}
+#search  .mw_text{
+	width: 33%;
 }
 .mw_ta{
 	padding-left:8px;

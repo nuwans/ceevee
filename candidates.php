@@ -109,7 +109,8 @@
 			    <input type="text" id="can_s_age" class="mw_text" placeholder="Age Under">
 			    <input type="text" id="can_s_age_a" class="mw_text" placeholder="Age Above">
 			    <input type="text" id="can_s_country" class="mw_text" placeholder="Country Preference">
-			    <input type="text" id="can_s_job_pre" class="mw_text" placeholder="Job Preference">
+			    <input type="text" id="can_s_job_pre" class="mw_text" placeholder="Job Preference Primary">
+			    <input type="text" id="can_s_job_pre2" class="mw_text" placeholder="Job Preference Secondary">
 	  		</div>
   			<div id="serch_buttons">
   				<a href="#search_can" class="mw_action_btn" id="mw_can_search_btn" > Search </a>

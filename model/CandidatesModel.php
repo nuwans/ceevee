@@ -119,6 +119,7 @@ $candidatesClass = new Candidates();
        $age=$_REQUEST["age"];
        $country_pre=$_REQUEST["cou_pre"];
        $job_preference=$_REQUEST["job_pre"];
+       $job_preference2=$_REQUEST["job_pre2"];
        $age_above=$_REQUEST["agea"];
        //echo $industry;
         //echo $proff;
@@ -126,7 +127,7 @@ $candidatesClass = new Candidates();
         //echo $country;
        
        
-       $candidatesClass->SearchCandidates($industry,$proff,$gender,$country,$name,$age,$country_pre,$job_preference,$age_above);       
+       $candidatesClass->SearchCandidates($industry,$proff,$gender,$country,$name,$age,$country_pre,$job_preference,$job_preference2,$age_above);       
 //echo $name;
 //echo "done" ;
 }

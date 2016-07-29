@@ -6,7 +6,7 @@ class DBConnect{
             session_start(); 
         } 
         $name=$_SESSION['db'];
-        $con=  mysqli_connect("localhost", "ceeveebi_admin", "a[$1!V8lmp]w", $name);
+       // $con=  mysqli_connect("localhost", "ceeveebi_admin", "a[$1!V8lmp]w", $name);
         $con=  mysqli_connect("localhost", "root", "", $name);
         if(!$con){
         	//echo 'connection problem in dbconnect';///////////
