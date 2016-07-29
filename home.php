@@ -64,7 +64,6 @@ $(document).ready(function() {
 
 //  LoadJobs();
 	 $('#mw_save_job').click(function() {
-		 alert($('#added_by').val());
 		AddJobsAndCandidates('JobsModel',$('#position').val(),$('#industry').val(),$('#country').val(),$('#salary').val(),$('#overview').val(),$('#added_by').val(),$('#company').val());     
 
 	    });
@@ -119,7 +118,7 @@ $(document).ready(function() {
 	 	var coun= $('#s_country').val();
 	 	var sala= $('#s_salary').val();
 	 	var comp= $('#s_company').val();
-	 	alert(comp);
+	 	//alert(comp);
 	 	SearchJobs("JobsModel",posi,indu,coun,sala,comp);
 	
 	    });

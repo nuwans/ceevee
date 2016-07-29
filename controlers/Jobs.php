@@ -85,7 +85,7 @@ public function SearchJobs($pos,$ind,$coun,$sal,$company){
     $sql="SELECT * FROM `jobs`";   
     
     
-    if(($ind != '') ||  ($pos != '') || ($coun != '') || ($sal != '')|| ($company != '')) {
+    if(($ind != '') ||  ($pos != '') || ($coun != '') ||  ($company != '')) {
     $sql .= "WHERE ";
   }
  
@@ -95,7 +95,7 @@ if($ind != '') { $sql .= $combine. "`industry` like '%$ind%' "; $combine='AND ';
 if($pos != '') { $sql .= $combine. " `position` LIKE '%$pos%' "; $combine='AND '; }
 if($coun != '')  { $sql .= $combine. "  `country` = '$coun' "; $combine='AND '; }
 if($company != '')  { $sql .= $combine. "  `company` = '$company' "; $combine='AND '; }
-if($sal != '')  { $sql .= $combine. "  `sallary` <= $sal ";}
+/*if($sal != '')  { $sql .= $combine. "  `sallary` <= $sal ";}*/
 
 
 

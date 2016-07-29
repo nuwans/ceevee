@@ -29,7 +29,7 @@
 			    <input type="text" id="s_position" class="mw_text" placeholder="Position">
 			    <input type="text" id="s_industry" class="mw_text" placeholder="Industry">
 			    <input type="text" id="s_country" class="mw_text" placeholder="Country">
-			    <input type="text" id="s_salary" class="mw_text" placeholder="Salary">
+			    <input type="hidden" id="s_salary" class="mw_text" value="" placeholder="Salary">
 				<input type="text" id="s_company" class="mw_text" placeholder="Company">
 
 	  		</div>
