@@ -161,6 +161,8 @@ $(document).ready(function() {
 				var country_pre =		$('#can_s_country').val();
 				var job_preference = $('#can_s_job_pre').val();
 				var job_preference2 = $('#can_s_job_pre2').val();
+				var edu = $('#can_s_edu').val();
+				var status = $('#can_s_avai').val();
 				//alert(country);
 				$.post("model/CandidatesModel.php", //Required URL of the page on server
 									{ // Data Sending With Request To Server
@@ -175,6 +177,8 @@ $(document).ready(function() {
 										cou_pre:country_pre,
 										job_pre:job_preference,
 										job_pre2:job_preference2,
+										edu:edu,
+										status:status
 
 									},function(response,status){ // Required Callback Function
 									//alert(response); 

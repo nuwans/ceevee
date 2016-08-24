@@ -10,12 +10,11 @@
 			errBack = function(error) {
 				console.log("Video capture error: ", error.code); 
 			};
-	document.getElementById("cam_img").addEventListener("click", function() {
-			
+			video.style.width=0;
+	document.getElementById("cap-img").addEventListener("click", function() {	
 			video.style.visibility = 'visible';
-			snap.style.display = 'block';
-				
-				
+			video.style.width='266px';
+			snap.style.display = 'block';			
 			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||  navigator.mozGetUserMedia;
 			if (navigator.getUserMedia) {
 				navigator.getUserMedia({ video: videoObj },
@@ -36,17 +35,30 @@
 			}
 	}, false);
 
-	document.getElementById("snap").addEventListener("click", function() {
-			
+	document.getElementById("snap").addEventListener("click", function() {	
 			context.drawImage(video, 0, 0, 266, 200);
 			var dataURL = canvas.toDataURL();
 			image.value=dataURL;
 			if(Stream.enabled){
 				video.pause();
+				video.style.width=0;
 				Stream.stop();
 				snap.style.display = 'none';
 				video.style.visibility = 'hidden';
 				}
+
+		});
+	document.getElementById("cancel_i_upload").addEventListener("click", function() {	
+	
+			if((Stream!=null)&& (Stream.enabled==true)){
+				video.pause();
+				video.style.width=0;
+				Stream.stop();
+				snap.style.display = 'none';
+				video.style.visibility = 'hidden';
+			}
+			image.value="";
+			context.clearRect(0, 0, canvas.width, canvas.height);
 
 		});
 

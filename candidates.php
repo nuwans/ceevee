@@ -9,7 +9,10 @@
 					<video id="video"  autoplay></video>
 				</div>
 				<input type="hidden" name='imageurl' id='imageurl'/>
-				<div id="snap">Take Photo</div>				
+				<div id="cap-img" class="cam-controls">Take Photo</div>	
+				<div id="snap">Capture</div>	
+				<div class="cam-controls" id="cancel_i_upload"> Cancel </div>	
+				<input type='file'  accept="image/*" onchange="showImage(this)"  class="profile_upload" name='profile_upload' />
 				<script type="text/javascript" src='webcam.js'>
 					
 				</script>
@@ -18,6 +21,7 @@
 	    	    <input type="text" id="c_f_name" name="c_f_name" placeholder="First Name" class="mw_c_left" required  >
 	    		<input type="text" id="c_l_name" name="c_l_name" placeholder="Last Name" class="mw_c_left" required  >
 	    		<input type="text" id="c_l_nation" name="c_l_natio" placeholder="Nationality" class="mw_c_left" required  >
+	    		<input type="text" id="c_l_nic" name="c_l_nic" placeholder="NIC #" class="mw_c_left" required  >
 				<input type="text" id="c_l_passport" name="c_l_passport" placeholder="Passport#" class="mw_c_left" required   >
             <?php if (isset($_GET['rs']) && ($_GET['rs']=='faild')){ 
             			echo '<script>alert("Please upload an image");</script>'; 
@@ -111,6 +115,9 @@
 			    <input type="text" id="can_s_country" class="mw_text" placeholder="Country Preference">
 			    <input type="text" id="can_s_job_pre" class="mw_text" placeholder="Job Preference Primary">
 			    <input type="text" id="can_s_job_pre2" class="mw_text" placeholder="Job Preference Secondary">
+			    <input type="text" id="can_s_edu" class="mw_text" placeholder="Education">
+			    <input type="text" id="can_s_avai" class="mw_text" placeholder="Status">
+			
 	  		</div>
   			<div id="serch_buttons">
   				<a href="#search_can" class="mw_action_btn" id="mw_can_search_btn" > Search </a>

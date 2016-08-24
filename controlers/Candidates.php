@@ -56,7 +56,7 @@ public function ViewCandidates(){
 
 
 
-public function InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$s,$db){
+public function InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$s,$db,$nic){
 	include_once 'DBConnect.php';
 	$dbCon = new DBConnect();
 	$connectionState=$dbCon->connection();
@@ -101,10 +101,13 @@ public function InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$i
 		 	$new_name=strval($max_id);
 		 	$today = date("Y_m_d");
 		    $new_name= $new_name."_".$today.".png";
-			List($type, $img) = explode(';', $img);
-			list(, $img)      = explode(',', $img);
-			$data = base64_decode($img);
-			file_put_contents('../uploads/profile_pics/'.$new_name, $data);
+			if($img!=null){
+				List($type, $img) = explode(';', $img);
+				list(, $img)      = explode(',', $img);
+				$data = base64_decode($img);
+				file_put_contents('../uploads/profile_pics/'.$new_name, $data);
+			}
+			
 		    
 		$edu ="";
 		foreach($j as $key => $text_field){
@@ -121,9 +124,9 @@ public function InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$i
 	$sql = "INSERT INTO `".$db."`.`candidates`
 			(`id`, `f_name`, `l_name`, `dob`, `gender`, `marital_st`, `mobile`,
 			`email`, `indusrty`, `proffesion`, `education`, `experiance`, 
-			`job_preference`, `exp_salary`, `exp_country`, `status`, `img_id`,`country`, `passport`,`job_preference2`,`added_by`) 
+			`job_preference`, `exp_salary`, `exp_country`, `status`, `img_id`,`country`, `passport`,`job_preference2`,`added_by` ,`nic`) 
 			VALUES (NULL, '$a', '$b', '$c', '$d', '$e','$f', '$g', '$h', '$i','$edu', '$exp', '$l', 
-			'$n', '$m', '$o', '$new_name', '$p' , '$q' ,'$s' ,'$r');";		 
+			'$n', '$m', '$o', '$new_name', '$p' , '$q' ,'$s' ,'$r', '$nic');";		 
 			$ViewResult=mysqli_query($connectionState,$sql);
 			if($ViewResult){
 			}
@@ -135,7 +138,7 @@ public function InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$i
 
 
 
-public function SearchCandidates($industry,$proff,$gender,$country,$name,$age,$country_pre,$job_preference,$job_preference2,$age_above){
+public function SearchCandidates($industry,$proff,$gender,$country,$name,$age,$country_pre,$job_preference,$job_preference2,$age_above,$edu,$status){
 	include_once 'DBConnect.php';
 	$dbCon = new DBConnect();
 	$connectionState=$dbCon->connection();
@@ -152,7 +155,7 @@ public function SearchCandidates($industry,$proff,$gender,$country,$name,$age,$c
 	*/       
 	$sql = "SELECT * FROM `candidates` ";
 
-	if(($industry != '') ||  ($proff != '') || ($gender != '') || ($country != '') ||($name != '') ||  ($age != '') || ($age_above != '') ||($country_pre != '') || ($job_preference != '') || ($job_preference2 != '')) {
+	if(($industry != '') ||  ($proff != '') || ($gender != '') || ($country != '') ||($name != '') ||  ($age != '') || ($age_above != '') ||($country_pre != '') || ($job_preference != '') || ($job_preference2 != '') || ($edu != '') || ($status != '')) {
 		$sql .= "WHERE ";
 	}
  
@@ -161,12 +164,14 @@ public function SearchCandidates($industry,$proff,$gender,$country,$name,$age,$c
 	if($industry != '')     { $sql .= $combine. " `indusrty` LIKE '%$industry%' "; $combine='AND '; }
 	if($proff != '') { $sql .= $combine. " `proffesion` LIKE '%$proff%' "; $combine='AND '; }
 	if($gender != '')  { $sql .= $combine. "  `gender` = '$gender' "; $combine='AND '; }
-	if($country != '')  { $sql .= $combine. "  `country` = '$country' "; $combine='AND ';}
+	if($country != '')  { $sql .= $combine. "  `country` LIKE '%$country%' "; $combine='AND ';}
 	if($name != '')  { $sql .= $combine. "  `f_name` = '$name' "; $combine='AND ';}
 	if($age != '')  { $sql .= $combine. "  DATEDIFF(CURRENT_DATE, dob) <= ($age * 365.25) "; $combine='AND ';}
 	if($age_above != '')  { $sql .= $combine. "  DATEDIFF(CURRENT_DATE, dob) >= ($age_above * 365.25) "; $combine='AND ';}
-	if($country_pre != '')  { $sql .= $combine. "  `exp_country` = '$country_pre' ";$combine='AND ';}
+	if($country_pre != '')  { $sql .= $combine. "  `exp_country` LIKE '%$country_pre%' ";$combine='AND ';}
 	if($job_preference != '')  { $sql .= $combine. "  `job_preference` = '$job_preference' "; $combine='AND ';}
+	if($edu != '')  { $sql .= $combine. "  `education` LIKE '%$edu%' "; $combine='AND ';}
+	if($status != '')  { $sql .= $combine. "  `status` LIKE '%$status%' "; $combine='AND ';}
 	if($job_preference2 != '')  { $sql .= $combine. "  `job_preference2` = '$job_preference2' "; }
 
 	//$sql="SELECT * FROM `candidates` WHERE DATEDIFF(CURRENT_DATE, dob) >= (12 * 365.25) AND DATEDIFF(CURRENT_DATE, dob) <= (40* 365.25)  ;";
@@ -211,6 +216,8 @@ public function SearchCandidates($industry,$proff,$gender,$country,$name,$age,$c
 				</tr>";
 		}
 		$output_table .= "</table>";
+		//$output_table .= $sql;
+
 		echo $output_table;
 		//echo  date("Y-m-d");
 		$connectionState->close();
@@ -258,6 +265,7 @@ public function ShowOneCandidate($id){
 				<div id='up_photo' class='camera-ctrl-btn'>Edit</div>
 				<div id='up_snap' class='camera-ctrl-btn'>Capture</div>
 				<div id='up_cancel' class='camera-ctrl-btn'>Cancel</div>
+				<input type='file' accept='image/*' class='camera-ctrl-input' onchange='showImageToUpdate(this)' disabled='disabled'/>
 	    		    			    			    		
 	    		<table  id='ed_tbl' style='width: 100%'>
 					<tr>
@@ -284,6 +292,12 @@ public function ShowOneCandidate($id){
 						<td class='ed_lc_label'>Nationality</td>
 						<td  class='ed_lc_input' ><input type='text' id='ed_nation' 
 							 value='$row[17]' disabled='disabled' name='ed_nation'>  
+						</td>
+					</tr>
+					<tr>
+						<td class='ed_lc_label'>NIC #</td>
+						<td  class='ed_lc_input' ><input type='text' id='e_nic' 
+							 value='$row[22]' disabled='disabled' name='e_nic'>  
 						</td>
 					</tr>
 					<tr>
@@ -508,7 +522,7 @@ public function DeleteCan($id,$db){
 	$connectionState->close();
 }
 
-public function UpdateCandidates($ref,$a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$db){
+public function UpdateCandidates($ref,$a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$db,$nic){
 
 	//echo $b;echo $c;echo $d;echo $e;echo $f;echo $g;echo $h;echo $i;echo $j;echo $k;
 	include 'DBConnect.php';
@@ -560,8 +574,8 @@ public function UpdateCandidates($ref,$a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,
 	$sql = "UPDATE `".$db."`.`candidates` SET `f_name` = '$a', `l_name` = '$b', `dob` = '$c', `gender` = '$d',
 	`marital_st` ='$e' , `mobile` = '$f', `email` = '$g', `indusrty` = '$i', `proffesion` = '$j',
 	`education` = '$edu', `experiance` = '$exp', `job_preference` = '$l', `exp_salary` = '$n', `exp_country` = '$m',
-	`status` = '$o', `country` = '$p',`passport` = '$q' , `job_preference2` = '$r' ";
-	if(($tmp !=='') && ($ext !== '') ){
+	`status` = '$o', `country` = '$p',`passport` = '$q' , `job_preference2` = '$r' , `nic` = '$nic' ";
+	if(($img !=='') && ($new_name !== '') ){
 	$sql .= " , `img_id` ='$new_name' " ;
 	}
 	$sql .= " WHERE `candidates`.`id` = $ref;";

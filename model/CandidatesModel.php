@@ -23,6 +23,7 @@ $candidatesClass = new Candidates();
        $b = $_REQUEST["c_l_name"];
        $c = $_REQUEST["c_b_day"];
        $d = $_REQUEST["c_gender"];
+       $nic=$_REQUEST["c_l_nic"];
        $e = $_REQUEST["c_marital"];
        $f = $_REQUEST["c_mobile"];
        $g = $_REQUEST["c_email"];
@@ -48,14 +49,12 @@ $candidatesClass = new Candidates();
             e
             
             }*/
-       if($img!=null){
+       
       // echo $img;
-       $candidatesClass->InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$s,$db);   
+       $candidatesClass->InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$s,$db,$nic);   
        header("Location: ../home.php?rs=success"); /* Redirect browser */
        exit();       
-       }else{
-            header("Location: ../home.php?rs=faild#add");
-       }
+       
 
       //$candidatesClass->InsertCandidates($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q);   
      // header("Location: ../home.php"); /* Redirect browser */
@@ -87,17 +86,21 @@ $candidatesClass = new Candidates();
        $p=$_REQUEST['ed_nation'];
        $q=$_REQUEST['e_passport'];
        $r=  $_REQUEST["e_j_pref2"];
+       $nic=  $_REQUEST["e_nic"];
+       
        $img="";
-       if(isset($_REQUEST["up_img"])){
-          $img=$_REQUEST['up_img'];
+       if(isset($_REQUEST['up_img'])){
+           $img=$_REQUEST['up_img'];
        }
+       
+       
        //echo $img;
       // echo $img1;
       //echo $a;
      // echo $b;echo $c;echo $d;echo $e;echo $f;echo $g;echo $h;echo $i;echo $j;echo $k;
        
        
-      $candidatesClass->UpdateCandidates($ref,$a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$db);   
+      $candidatesClass->UpdateCandidates($ref,$a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$img,$p,$q,$r,$db,$nic);   
       header("Location: ../home.php"); /* Redirect browser */
        // exit();
 //echo $name;
@@ -120,14 +123,16 @@ $candidatesClass = new Candidates();
        $country_pre=$_REQUEST["cou_pre"];
        $job_preference=$_REQUEST["job_pre"];
        $job_preference2=$_REQUEST["job_pre2"];
-       $age_above=$_REQUEST["agea"];
+       $age_above=$_REQUEST["agea"]; 
+       $edu=$_REQUEST["edu"]; 
+       $status=$_REQUEST["status"]; 
        //echo $industry;
         //echo $proff;
         //echo $gender;
         //echo $country;
        
        
-       $candidatesClass->SearchCandidates($industry,$proff,$gender,$country,$name,$age,$country_pre,$job_preference,$job_preference2,$age_above);       
+       $candidatesClass->SearchCandidates($industry,$proff,$gender,$country,$name,$age,$country_pre,$job_preference,$job_preference2,$age_above,$edu,$status);       
 //echo $name;
 //echo "done" ;
 }

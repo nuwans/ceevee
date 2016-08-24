@@ -4,22 +4,41 @@ window.print();
 
 
 function showImage(input){
-	 if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#img_prev')
-                        .attr('src', e.target.result)
-                        .width(200)
-                        .height(200);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
+	console.log(input);
+	var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+	var hiddenImage=document.getElementById('imageurl');
+	 if (input.files && input.files[0] ) {
+		 	if(input.files[0].size<1000000){
+				 var reader = new FileReader();
+                reader.onload = function (event) {
+					var img = new Image();
+					img.onload = function(){
+						canvas.width = 266;
+						canvas.height = 200;
+						ctx.drawImage(img,0,0,266,200);
+					}
+					img.src = event.target.result;
+					hiddenImage.value=event.target.result;
+					
+                }
+			    reader.readAsDataURL(input.files[0]);
+			 }else{
+				 alert('Image size is too large');
+			 }
+                
+				
+               
+     }
 
 }
 
 function showImageToUpdate(input){
+	 var imgwrap = document.getElementById('e_img');
+	 var hiddninput=document.createElement('input');
+		hiddninput.type='hidden';
+		hiddninput.name='up_img';
+		hiddninput.id='up_img';
 	 if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
@@ -28,6 +47,8 @@ function showImageToUpdate(input){
                         .attr('src', e.target.result)
                         .width(200)
                         .height(200);
+					hiddninput.value=e.target.result;
+					imgwrap.appendChild(hiddninput);
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -295,6 +316,7 @@ function EnableCanEdit(){
    document.getElementById('ed_nation').disabled = false;
    document.getElementById('ed_passport').disabled = false;
 		var img=document.getElementById('e_img_prev');
+		var originalsrc=img.src;
 		var wrapper=document.getElementById('e_img');
 		var snap=document.getElementById('up_snap');
 		
@@ -320,7 +342,7 @@ function EnableCanEdit(){
 					console.log("Video capture error: ", error.code); 
 				};
 		 document.getElementById('up_photo').addEventListener('click',function() {	
-			    img.remove();
+			        img.remove();
 					$('#e_img').html('');
 					wrapper.appendChild(canvas);
 					wrapper.appendChild(video);
@@ -370,6 +392,7 @@ function EnableCanEdit(){
 				video.remove();
 				hiddninput.remove();
 				wrapper.appendChild(img);
+				img.src=originalsrc;
 			});
 
 }

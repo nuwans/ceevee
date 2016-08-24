@@ -321,6 +321,7 @@ background:#242424;
 }
 #serch_buttons{
 padding-top:30px;
+clear: both;
 }
 #mw_search_btn, #mw_can_search_btn{
 	background:url('images/search27.png') no-repeat top left;
@@ -475,10 +476,30 @@ td{
 	height: 200px;
 	left: 295px;
 	bottom:200px;
-	z-index: 8;
+	/*z-index: 8;*/
 }
 #snap{
 	display: none;
+	 color: #ffffff;
+    font-family: BebasNeue;
+    font-size: 20px;
+	float: left;
+	padding: 0 5px;
+
+}
+.cam-controls{
+	color: #ffffff;
+    font-family: BebasNeue;
+    font-size: 20px;
+	float: left;
+	padding-left: 15px;
+}
+.profile_upload{
+	width: 90%;
+	float: left;
+	color:#ffffff;
+	margin-left: 18px;
+	margin-bottom: 10px;
 }
 #img_prev{
 	min-height:200px;
@@ -516,6 +537,14 @@ td{
 .camera-ctrl-btn:hover{
 	background: #ffffff;
 	color:#242424;
+
+}
+.camera-ctrl-input{
+	color: #ffffff;
+	float: left;
+	font-size: 15px;
+	margin: 5px;
+	padding: 4px;
 }
 #up_video{
 	position: relative;
